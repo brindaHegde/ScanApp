@@ -1,0 +1,19 @@
+﻿<Application x:Class="ScanningApplication.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ScanningApplication"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomTogglebutton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomButtonIcon.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomScrollViewer.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomDataGridStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomComboStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,97 @@
+﻿<Window x:Class="ScanApp.SendTo.SendToView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScanApp.SendTo"
+        mc:Ignorable="d" Height="350" Width="600"
+        WindowStyle="None" 
+        ResizeMode="NoResize" Background="Transparent" AllowsTransparency="True">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomTogglebutton.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomButtonIcon.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomScrollViewer.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ScanApp.Common;component/Themes/CustomDataGridStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Border Background="#272030" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Send To:"
+                       Foreground="White" FontSize="22" Margin="10"/>
+            <Button Style="{DynamicResource CloseButtonStyle}" Grid.Row="1" Grid.Column="2" 
+                    Foreground="White" Content="X" VerticalAlignment="Top" FontSize="15"
+                    BorderThickness="0" Background="Transparent" Width="25" HorizontalAlignment="Right"
+                    Command="{Binding CloseButton}"/>
+
+            <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding SendToCollection}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Content="{Binding SendToContent}" Foreground="White" Margin="10" IsChecked="{Binding IsSendToChecked}"/>
+                            <Button Grid.Column="1" Content="{Binding ButtonContent}" Foreground="White"
+                                    Style="{DynamicResource HomeButtonStyle}" Margin="5" IsEnabled="{Binding IsSendToChecked}"
+                                    Command="{Binding SendToCommand}" CommandParameter="{Binding SendToContent}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <!--<CheckBox Grid.Row="2" Grid.Column="1" Foreground="White"  
+                      Content="Save To Folder:" Margin="10"/>
+            <Button Grid.Row="2" Grid.Column="2" Content="Browse" Margin="5"
+                    Command="{Binding BrowseCommand}" Foreground="White" 
+                    Style="{DynamicResource HomeButtonStyle}"/>
+
+            <CheckBox Grid.Row="3" Grid.Column="1" Foreground="White"  
+                      Content="Email:" Margin="10"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="Setup" Margin="5" Foreground="White" 
+                    Command="{Binding EmailCommand}" Style="{DynamicResource HomeButtonStyle}"/>
+
+            <CheckBox Grid.Row="4" Grid.Column="1" Foreground="White"  
+                      Content="Printer:" Margin="10"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="Setup" Margin="5"
+                    Command="{Binding PrintCommand}" Foreground="White" 
+                    Style="{DynamicResource HomeButtonStyle}"/>
+
+            <CheckBox Grid.Row="5" Grid.Column="1" Foreground="White"  
+                      Content="Sharepoint:" Margin="10"/>
+            <Button Grid.Row="5" Grid.Column="2" Content="Setup" Margin="5"
+                    Command="{Binding SPCommand}" Foreground="White" 
+                    Style="{DynamicResource HomeButtonStyle}"/>
+
+            <CheckBox Grid.Row="6" Grid.Column="1" Foreground="White"  
+                      Content="Dropbox:" Margin="10"/>
+            <Button Grid.Row="6" Grid.Column="2" Content="Setup" Margin="5"
+                    Command="{Binding DropBoxCommand}" Foreground="White" 
+                    Style="{DynamicResource HomeButtonStyle}"/>-->
+        </Grid>
+    </Border>
+    
+</Window>

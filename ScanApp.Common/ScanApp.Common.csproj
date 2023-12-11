@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="UIHelper\**" />
+    <EmbeddedResource Remove="UIHelper\**" />
+    <None Remove="UIHelper\**" />
+    <Page Remove="UIHelper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Themes\Cursors\cur_flag.cur" />
+    <None Remove="Themes\Cursors\cur_mode_magnifier.cur" />
+    <None Remove="Themes\Icons\Crop.png" />
+    <None Remove="Themes\Icons\DrawRegion.png" />
+    <None Remove="Themes\Icons\FitToOrig.png" />
+    <None Remove="Themes\Icons\FitToWindow.png" />
+    <None Remove="Themes\Icons\Info.png" />
+    <None Remove="Themes\Icons\Magnify.png" />
+    <None Remove="Themes\Icons\Mail.png" />
+    <None Remove="Themes\Icons\Pan.png" />
+    <None Remove="Themes\Icons\Print.png" />
+    <None Remove="Themes\Icons\Rotate180.png" />
+    <None Remove="Themes\Icons\Rotate270.png" />
+    <None Remove="Themes\Icons\Rotate90.png" />
+    <None Remove="Themes\Icons\RotateReset.png" />
+    <None Remove="Themes\Icons\ScanStart.png" />
+    <None Remove="Themes\Icons\SP.png" />
+    <None Remove="Themes\Icons\ZoomIn.png" />
+    <None Remove="Themes\Icons\ZoomOut.png" />
+    <None Remove="Themes\Icons\ZoomZones.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Themes\Icons\Print.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Themes\Cursors\cur_flag.cur" />
+    <Resource Include="Themes\Cursors\cur_mode_magnifier.cur" />
+    <Resource Include="Themes\Icons\Crop.png" />
+    <Resource Include="Themes\Icons\DrawRegion.png" />
+    <Resource Include="Themes\Icons\FitToOrig.png" />
+    <Resource Include="Themes\Icons\FitToWindow.png" />
+    <Resource Include="Themes\Icons\Info.png" />
+    <Resource Include="Themes\Icons\Magnify.png" />
+    <Resource Include="Themes\Icons\Mail.png" />
+    <Resource Include="Themes\Icons\Pan.png" />
+    <Resource Include="Themes\Icons\Rotate180.png" />
+    <Resource Include="Themes\Icons\Rotate270.png" />
+    <Resource Include="Themes\Icons\Rotate90.png" />
+    <Resource Include="Themes\Icons\RotateReset.png" />
+    <Resource Include="Themes\Icons\ScanStart.png" />
+    <Resource Include="Themes\Icons\SP.png" />
+    <Resource Include="Themes\Icons\ZoomIn.png" />
+    <Resource Include="Themes\Icons\ZoomOut.png" />
+    <Resource Include="Themes\Icons\ZoomZones.png" />
+  </ItemGroup>
+
+</Project>

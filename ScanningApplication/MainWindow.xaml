@@ -1,0 +1,88 @@
+﻿<Window x:Class="ScanningApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:usr="clr-namespace:ScanningApplication"
+        mc:Ignorable="d"
+        Height="450" Width="800" WindowStyle="None" 
+        ResizeMode="NoResize" Background="Transparent" AllowsTransparency="True"
+        xmlns:loc="clr-namespace:ScanApp.Common;assembly=ScanApp.Common">
+
+
+    <Window.Resources>
+        <!--#region Data Templates-->
+        <DataTemplate DataType="{x:Type usr:HomeViewModel}">
+            <usr:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type usr:ScannedDocViewModel}">
+            <usr:ScannedDocView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type usr:ScanViewModel}">
+            <usr:ScanView/>
+        </DataTemplate>
+
+        <!--<DataTemplate DataType="{x:Type usr:ScanViewModel}">
+            <usr:ScanView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type usr:SendToViewModel}">
+            <usr:SendToView/>
+        </DataTemplate>-->
+        <!--#endregion-->
+    </Window.Resources>
+    
+    <Border Background="#272537" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>            
+            
+            <!--#region Row 1-->
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="ScanApp" Padding="10" VerticalAlignment="Center" HorizontalAlignment="Left"
+                           FontWeight="ExtraBlack" Foreground="White" FontSize="25" Margin="10 0 10 0"/>
+
+                <Button Style="{DynamicResource CloseButtonStyle}" Grid.Row="1" Grid.Column="2" 
+                        Foreground="White" Content="X" VerticalAlignment="Top" FontSize="15"
+                        BorderThickness="0" Background="Transparent" 
+                        Command="{Binding CloseButton}" Margin="0 0 10 0"/>
+            </Grid>
+            
+            <!--#endregion-->
+            
+            <!--#region Row 2 -->
+            <StackPanel Grid.Row="2">
+                <RadioButton Content="Home" Padding="5" Style="{StaticResource MenuButtonStyle}"
+                             Command="{Binding HomeButton}" CommandParameter="1"
+                             IsChecked="{Binding IsHomeChecked, Mode=TwoWay}"/>
+                <RadioButton Content="Scan" Padding="5" Style="{StaticResource MenuButtonStyle}"
+                             Command="{Binding ScanButton}" CommandParameter="2"
+                             IsChecked="{Binding IsScanChecked, Mode=TwoWay}"/>
+                <RadioButton Content="Scanned Documents" Padding="5" Style="{StaticResource MenuButtonStyle}"
+                             Command="{Binding ScannedDocButton}" CommandParameter="3"
+                             IsChecked="{Binding IsScanDocChecked, Mode=TwoWay}"/>
+            </StackPanel>
+            <!--#endregion-->
+
+            <ContentControl Grid.Row="2" Grid.Column="1" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
+</Window>

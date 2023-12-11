@@ -1,0 +1,346 @@
+﻿<UserControl x:Class="ScanningApplication.ScanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:ScanningApplication"
+             xmlns:conv="clr-namespace:ScanApp.Common;assembly=ScanApp.Common"
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!-- Converts a color value to a brush -->
+            <conv:ColorToBrushConverter x:Key="colorToBrushConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="10 0 0 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/ScanApp.Common;component/Themes/Icons/Info.png" Width="25" Height="25" VerticalAlignment="Center"/>
+                <TextBlock Text="Image Properties" Foreground="White" FontSize="22" Margin="0 5 0 5" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <TextBlock Text="Image:" Foreground="White"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Text="{Binding ImgName}" Width="200" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Image Width:" Foreground="White"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Text="{Binding ImgWidth}"
+                     IsReadOnly="True" Width="200" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Image Hieght:" Foreground="White"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Text="{Binding ImgHieght}"
+                     IsReadOnly="True" Width="200" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Image Size:" Foreground="White"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Text="{Binding ImgResolution}"
+                     IsReadOnly="True" Width="200" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Image Size:" Foreground="White"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Text="{Binding ImgSize}"
+                     IsReadOnly="True" Width="200" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Image Location:" Foreground="White"/>
+            <TextBox Style="{DynamicResource TextBoxStyle}" 
+                     Text="{Binding ImgLoc}" Width="200" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <Border Margin="5" Grid.RowSpan="2" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Grid.Column="1" Style="{DynamicResource HomeButtonStyle}"
+            Content="Back" Width="80" Padding="5" BorderThickness="0"
+            Background="#7393B3" Foreground="White" 
+            Command="{Binding BackImgCommand}" Margin="5 0 0 0"/>
+                    <Button Grid.Column="1" Style="{DynamicResource HomeButtonStyle}"
+            Content="Next" Width="80" Padding="5" BorderThickness="0"
+            Background="#7393B3" Foreground="White" 
+            Command="{Binding NextImgCommand}" Margin="5 0 0 0"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" Grid.RowSpan="2">
+                    <RadioButton Grid.Row="1" ToolTipService.ShowOnDisabled="True" GroupName="ZoneOptions"  
+                                 Command="{Binding DrawRegionClickCommand}" IsChecked="{Binding DrawRegionChecked}" 
+                                 Click="DrawRegionClickEvent" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/DrawRegion.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+
+                    <RadioButton  Grid.Row="2"  ToolTipService.ShowOnDisabled="True" GroupName="ZoneOptions"  
+                             Command="{Binding MagnifierButtonClick }"
+                                      BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/Magnify.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton  Grid.Row="3"  ToolTipService.ShowOnDisabled="True" GroupName="ZoneOptions"  
+                             Command="{Binding PanButtonClick }" 
+                                      BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/Pan.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton  Grid.Row="4"  ToolTipService.ShowOnDisabled="True" GroupName="ZoneImageOptions"  
+                             Click="ZoomInButtonClick" IsChecked="{Binding ZoomInSet}"
+                                      BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/ZoomIn.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton  Grid.Row="5"  ToolTipService.ShowOnDisabled="True" GroupName="ZoneImageOptions"  
+                             Click="ZoomOutButtonClick" IsChecked="{Binding ZoomOutSet}"
+                                      BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/ZoomOut.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton  Grid.Row="6"  ToolTipService.ShowOnDisabled="True" GroupName="ZoneImageOptions"  
+                                      BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Click="FitToWindowButtonClick" IsChecked="{Binding FittoWindowSet}">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/FitToWindow.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton  Grid.Row="7"  ToolTipService.ShowOnDisabled="True" GroupName="ZoneImageOptions"  
+                                      BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Click="FitOriginalToWindowButtonClick" IsChecked="{Binding FitImageFullSet}">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/FitToOrig.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <!--<RadioButton ToolTipService.ShowOnDisabled="True" GroupName="ImgOptions" IsChecked="{Binding Rotate90Checked}" 
+                                 BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                 ToolTip="Rotate 90" Margin="5">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/Rotate90.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                        <Setter TargetName="ImageBorder1" Property="BorderBrush" Value="#7393B3" />
+                                    </Trigger>
+                                    <Trigger  Property="IsChecked" Value="False">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                        <Setter TargetName="ImageBorder1" Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton ToolTipService.ShowOnDisabled="True" GroupName="ImgOptions" IsChecked="{Binding Rotate180Checked}" 
+BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+ToolTip="Rotate 90" Margin="5" Background="Transparent">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0" Background="Transparent">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/Rotate180.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                        <Setter TargetName="ImageBorder1" Property="BorderBrush" Value="#7393B3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton ToolTipService.ShowOnDisabled="True" GroupName="ImgOptions" IsChecked="{Binding Rotate270Checked}" 
+BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+ToolTip="Rotate 90" Margin="5" Background="Transparent">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/Rotate180.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                        <Setter TargetName="ImageBorder1" Property="BorderBrush" Value="#7393B3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                    <RadioButton ToolTipService.ShowOnDisabled="True" GroupName="ImgOptions" IsChecked="{Binding Rotate0Checked}" 
+ BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+ToolTip="Rotate reset" Margin="5">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border x:Name="ImageBorder1" BorderThickness="0" Background="Transparent">
+                                    <Image x:Name="ImageSource1" Source="/ScanApp.Common;component/Themes/Icons/Rotate180.png" Height="25" Width="25"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger  Property="IsChecked" Value="True">
+                                        <Setter TargetName="ImageBorder1" Property="BorderThickness" Value="5"/>
+                                        <Setter TargetName="ImageBorder1" Property="BorderBrush" Value="#7393B3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>-->
+                </StackPanel>
+
+                <Grid x:Name="view" Grid.Row="1" Grid.Column="1" PreviewMouseWheel="ImageMouseWheel" Margin="5">
+
+                    <ScrollViewer x:Name="scrollImage" Style="{StaticResource ScrollViewerStyle}"
+           VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto"
+           HorizontalAlignment="Center" VerticalAlignment="Top" SnapsToDevicePixels="False">
+                        <Grid Cursor="{Binding PreviewImageAreaCursor}">
+                            <local:ZonePreviewGraphics x:Name="PreviewBorderCtrl"  ClipToBounds="True" Background="Transparent"
+                               BorderBrush="Black" BorderThickness="1">
+                                <Grid MouseMove="Org_MouseMove">
+                                    <Image x:Name="PreviewImage" Stretch="UniformToFill" ClipToBounds="True" SnapsToDevicePixels="False"
+                    Source="{Binding ImageSource, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Center"
+                    MouseLeftButtonDown="PreviewImage_MouseLeftButtonDown"
+                    MouseMove="PreviewImage_MouseMove"
+                    SizeChanged="PreviewImage_SizeChanged"
+                    PreviewMouseWheel="ImageMouseWheel" Height="320"/>
+
+                                    <Canvas x:Name="DragSelectionCanvas" Visibility="Collapsed" 
+                    HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False">
+                                        <Rectangle x:Name="DrawZoneRect" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="False"
+                       Canvas.Left="{Binding DragRectangle.X}" Canvas.Top="{Binding DragRectangle.Y}"
+                       Width="{Binding DragRectangle.Width}" Height="{Binding DragRectangle.Height}"
+                       Stroke="{Binding DragRectangle.Color, Converter={StaticResource colorToBrushConverter}}"
+                       Opacity="{Binding DragRectangle.Opacity}" 
+                       MouseMove="PreviewImage_MouseMove" />
+                                    </Canvas>
+
+                                    <ItemsControl ItemsSource="{Binding Rectangles}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <Canvas />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemContainerStyle>
+                                            <Style>
+                                                <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                                <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                            </Style>
+                                        </ItemsControl.ItemContainerStyle>
+                                    </ItemsControl>
+                                </Grid>
+
+                            </local:ZonePreviewGraphics>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!--<Border BorderBrush="DarkGray" 
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch" Grid.Column="1"
+                        Grid.Row="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5">
+                        <Image Source="{Binding ImageSource}">
+                            <Image.LayoutTransform>
+                                <RotateTransform Angle="{Binding RotateAngle}" />
+                            </Image.LayoutTransform>
+                        </Image>
+                    </ScrollViewer>
+                </Border>-->
+
+                <Popup x:Name="magnifierPopup" Placement="AbsolutePoint" AllowsTransparency="True" IsOpen="False">
+                    <Canvas x:Name="magnifierCanvas" Width="400" Height="300">
+                        <!-- Your magnified content here -->
+                        <Rectangle x:Name="main_Rectangle" Width="400" Height="300" Stroke="Black" StrokeThickness="2">
+                            <Rectangle.Fill>
+                                <VisualBrush x:Name="MagnifierBrush" Visual="{Binding ElementName=PreviewImage}" ViewboxUnits="Absolute"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Canvas>
+                </Popup>               
+                
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</UserControl>

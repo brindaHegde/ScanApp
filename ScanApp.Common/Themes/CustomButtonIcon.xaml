@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ScanApp.Common">
+
+    <!--#region Button Icons for Dialogs-->
+    <ControlTemplate x:Key="BtnIconTemplate" TargetType="{x:Type Button}">
+        <Grid>
+            <Border x:Name="hoverBorder" CornerRadius="4" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+            <Border x:Name="border" CornerRadius="4" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                <Grid>
+                    <local:ButtonIconDisable Source="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}" 
+                                               Height="{Binding Path=MinHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}"
+                                               Width="{Binding Path=MinWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{TemplateBinding Content}"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <!--<ControlTemplate.Triggers>
+            <Trigger Property="IsDefault" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource IconBtn.Default.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource IconBtn.Default.Border}"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource IconBtn.MouseOver.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource IconBtn.MouseOver.Background}"/>
+                <Setter Property="Background" TargetName="hoverBorder" Value="{StaticResource IconBtn.MouseOver.Border.Background}"/>
+                <Setter Property="BorderBrush" TargetName="hoverBorder" Value="{StaticResource IconBtn.MouseOver.Border.Background}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource IconBtn.Pressed.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource IconBtn.Pressed.Border}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource IconBtn.Disabled.Background}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource IconBtn.Disabled.Background}"/>
+                <Setter Property="Opacity" Value="0.75"/>
+            </Trigger>
+        </ControlTemplate.Triggers>-->
+    </ControlTemplate>
+
+
+    <Style x:Key="IconButton" TargetType="{x:Type Button}">
+        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>-->
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="IsDefault" Value="False"/>
+        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="MinWidth" Value="32"/>
+        <Setter Property="Template" Value="{StaticResource BtnIconTemplate}"/>
+
+    </Style>
+    <!--#endregion-->
+
+</ResourceDictionary>
